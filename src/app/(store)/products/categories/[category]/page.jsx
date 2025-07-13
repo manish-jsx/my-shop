@@ -50,6 +50,7 @@
 
 // src/app/products/categories/[category]/page.js
 'use client'
+import { use } from 'react'
 import { products, categories } from '@/lib/products'
 import ProductGrid from '@/components/products/ProductGrid'
 import { Button } from '@nextui-org/react'
@@ -57,7 +58,8 @@ import Link from 'next/link'
 import PageTransition from '@/components/ui/PageTransition'
 
 export default function CategoryPage({ params }) {
-  const { category } = params
+  const resolvedParams = use(params)
+  const { category } = resolvedParams
   const categoryInfo = categories.find(cat => cat.id === category)
   const categoryProducts = products.filter(
     product => product.category === category

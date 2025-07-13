@@ -3,11 +3,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   transpilePackages: ["@nextui-org/react"],
   reactStrictMode: true,
-  swcMinify: true,
 }
 
 export default nextConfig

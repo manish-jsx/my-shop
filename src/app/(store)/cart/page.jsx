@@ -4,11 +4,22 @@ import { useCart } from '@/context/CartContext'
 import CartItem from '@/components/cart/CartItem'
 import CartSummary from '@/components/cart/CartSummary'
 import PageTransition from '@/components/ui/PageTransition'
-
-
+import { useMobile } from '@/hooks/useMobile'
+import MobileSakuraLayout from '@/components/mobile/sakura/MobileSakuraLayout'
+import MobileSakuraCart from '@/components/mobile/sakura/MobileSakuraCart'
 
 export default function CartPage() {
+  const isMobile = useMobile()
   const { cart } = useCart()
+
+  // Show mobile UI on mobile devices
+  if (isMobile) {
+    return (
+      <MobileSakuraLayout showHeader={true}>
+        <MobileSakuraCart />
+      </MobileSakuraLayout>
+    )
+  }
 
   return (
     <PageTransition>

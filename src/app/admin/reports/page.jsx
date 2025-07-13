@@ -17,6 +17,7 @@ import {
   SelectItem,
   Input
 } from '@nextui-org/react'
+
 import { 
   BarChart3, 
   LineChart, 
@@ -56,29 +57,33 @@ export default function ReportsManager() {
 
   return (
     <div className="space-y-6 p-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Reports & Analytics</h1>
-        <div className="flex gap-4">
-          <Select 
-            className="w-48"
-            value={dateRange}
-            onChange={(e) => setDateRange(e.target.value)}
-          >
-            <SelectItem key="today">Today</SelectItem>
-            <SelectItem key="last7days">Last 7 Days</SelectItem>
-            <SelectItem key="last30days">Last 30 Days</SelectItem>
-            <SelectItem key="thisMonth">This Month</SelectItem>
-            <SelectItem key="lastMonth">Last Month</SelectItem>
-            <SelectItem key="thisYear">This Year</SelectItem>
-          </Select>
-          <Button 
-            color="primary" 
-            variant="flat"
-            startContent={<Download className="w-4 h-4"/>}
-          >
-            Export
-          </Button>
+      <div className="flex flex-col space-y-4">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">Reports & Analytics</h1>
+          <div className="flex gap-4">
+            <Select 
+              className="w-48"
+              value={dateRange}
+              onChange={(e) => setDateRange(e.target.value)}
+            >
+              <SelectItem key="today">Today</SelectItem>
+              <SelectItem key="last7days">Last 7 Days</SelectItem>
+              <SelectItem key="last30days">Last 30 Days</SelectItem>
+              <SelectItem key="thisMonth">This Month</SelectItem>
+              <SelectItem key="lastMonth">Last Month</SelectItem>
+              <SelectItem key="thisYear">This Year</SelectItem>
+            </Select>
+            <Button 
+              color="primary" 
+              variant="flat"
+              startContent={<Download className="w-4 h-4"/>}
+            >
+              Export
+            </Button>
+          </div>
         </div>
+
+       
       </div>
 
       {/* Summary Cards */}
@@ -192,9 +197,6 @@ export default function ReportsManager() {
                   <TableColumn>REVENUE</TableColumn>
                 </TableHeader>
                 <TableBody>
-                
-
-
                   {topProducts.map((product) => (
                     <TableRow key={product.name}>
                       <TableCell>{product.name}</TableCell>

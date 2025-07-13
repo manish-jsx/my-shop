@@ -9,6 +9,7 @@ import {
   LayoutDashboard,
   Package,
   Users,
+  UserPlus,
   ShoppingCart,
   Settings,
   ChevronLeft,
@@ -20,7 +21,12 @@ import {
   Bell,
   Gift,
   Percent,
-  MessageSquare
+  MessageSquare,
+  Gem,
+  Shield,
+  Award,
+  Crown,
+  Share2
 } from 'lucide-react'
 
 const menuItems = [
@@ -30,13 +36,14 @@ const menuItems = [
     path: '/admin',
   },
   { 
-    title: 'Products', 
-    icon: Package, 
+    title: 'Gemstone Catalog', 
+    icon: Gem, 
     path: '/admin/products',
     submenu: [
-      { title: 'All Products', path: '/admin/products' },
+      { title: 'All Gemstones', path: '/admin/products' },
       { title: 'Categories', path: '/admin/products/categories' },
-      { title: 'Inventory', path: '/admin/products/inventory' }
+      { title: 'Inventory', path: '/admin/products/inventory' },
+      { title: 'Certifications', path: '/admin/products/certifications' }
     ]
   },
   { 
@@ -45,23 +52,61 @@ const menuItems = [
     path: '/admin/orders',
     submenu: [
       { title: 'All Orders', path: '/admin/orders' },
-      { title: 'Pending', path: '/admin/orders/pending' },
+      { title: 'High-Value Orders', path: '/admin/orders/high-value' },
+      { title: 'Pending Verification', path: '/admin/orders/pending' },
       { title: 'Completed', path: '/admin/orders/completed' }
     ]
   },
   { 
-    title: 'Customers', 
+    title: 'Customer Relations', 
     icon: Users, 
-    path: '/admin/customers' 
+    path: '/admin/customers',
+    submenu: [
+      { title: 'All Customers', path: '/admin/customers' },
+      { title: 'VIP Program', path: '/admin/customers/vip' },
+      { title: 'Loyalty Rewards', path: '/admin/customers/loyalty' }
+    ]
+  },
+  { 
+    title: 'Reviews & Ratings', 
+    icon: MessageSquare, 
+    path: '/admin/reviews',
+    submenu: [
+      { title: 'All Reviews', path: '/admin/reviews' },
+      { title: 'Pending Reviews', path: '/admin/reviews?status=pending' },
+      { title: 'Review Analytics', path: '/admin/analytics/reviews' }
+    ]
+  },
+  { 
+    title: 'Lead Management', 
+    icon: UserPlus, 
+    path: '/admin/leads',
+    submenu: [
+      { title: 'All Leads', path: '/admin/leads' },
+      { title: 'Contact Forms', path: '/admin/leads?type=contact_form' },
+      { title: 'Quote Requests', path: '/admin/leads?type=quote_request' },
+      { title: 'Newsletter Signups', path: '/admin/leads?type=newsletter' }
+    ]
+  },
+  { 
+    title: 'Authentication', 
+    icon: Shield, 
+    path: '/admin/authentication',
+    submenu: [
+      { title: 'Certificate Management', path: '/admin/authentication/certificates' },
+      { title: 'Lab Partnerships', path: '/admin/authentication/labs' },
+      { title: 'Verification Queue', path: '/admin/authentication/queue' }
+    ]
   },
   { 
     title: 'Analytics', 
     icon: BarChart2, 
     path: '/admin/analytics',
     submenu: [
-      { title: 'Overview', path: '/admin/analytics' },
-      { title: 'Sales', path: '/admin/analytics/sales' },
-      { title: 'Traffic', path: '/admin/analytics/traffic' }
+      { title: 'Business Overview', path: '/admin/analytics' },
+      { title: 'Gemstone Performance', path: '/admin/analytics/gemstones' },
+      { title: 'Customer Insights', path: '/admin/analytics/customers' },
+      { title: 'Market Trends', path: '/admin/analytics/trends' }
     ]
   },
   { 
@@ -69,20 +114,61 @@ const menuItems = [
     icon: Tags, 
     path: '/admin/marketing',
     submenu: [
-      { title: 'Promotions', path: '/admin/marketing/promotions' },
-      { title: 'Discounts', path: '/admin/marketing/discounts' },
-      { title: 'Campaigns', path: '/admin/marketing/campaigns' }
+      { title: 'VIP Campaigns', path: '/admin/marketing/vip' },
+      { title: 'Seasonal Promotions', path: '/admin/marketing/promotions' },
+      { title: 'Email Marketing', path: '/admin/marketing/email' },
+      { title: 'Social Media', path: '/admin/marketing/social' }
+    ]
+  },
+  { 
+    title: 'Social Media Management', 
+    icon: Share2, 
+    path: '/admin/social-media',
+    submenu: [
+      { title: 'Dashboard', path: '/admin/social-media' },
+      { title: 'Content Calendar', path: '/admin/social-media/calendar' },
+      { title: 'Content Library', path: '/admin/social-media/library' },
+      { title: 'Post Scheduler', path: '/admin/social-media/scheduler' },
+      { title: 'Analytics', path: '/admin/social-media/analytics' }
     ]
   },
   { 
     title: 'Reports', 
     icon: FileText, 
-    path: '/admin/reports' 
+    path: '/admin/reports',
+    submenu: [
+      { title: 'Sales Reports', path: '/admin/reports/sales' },
+      { title: 'Inventory Reports', path: '/admin/reports/inventory' },
+      { title: 'Certification Reports', path: '/admin/reports/certificates' },
+      { title: 'Custom Reports', path: '/admin/reports/custom' }
+    ]
+  },
+  { 
+    title: 'Blog & Content', 
+    icon: FileText, 
+    path: '/admin/blog',
+    submenu: [
+      { title: 'All Posts', path: '/admin/blog' },
+      { title: 'Create New Post', path: '/admin/blog/new' },
+      { title: 'Categories', path: '/admin/blog/categories' },
+      { title: 'Comments', path: '/admin/blog/comments' }
+    ]
+  },
+  { 
+    title: 'Alerts & Monitoring', 
+    icon: Bell, 
+    path: '/admin/alerts',
   },
   { 
     title: 'Settings', 
     icon: Settings, 
-    path: '/admin/settings' 
+    path: '/admin/settings',
+    submenu: [
+      { title: 'General Settings', path: '/admin/settings' },
+      { title: 'Payment Settings', path: '/admin/settings/payments' },
+      { title: 'Shipping Settings', path: '/admin/settings/shipping' },
+      { title: 'Security Settings', path: '/admin/settings/security' }
+    ]
   }
 ]
 

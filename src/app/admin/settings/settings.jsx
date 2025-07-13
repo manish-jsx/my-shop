@@ -13,6 +13,7 @@ import {
   Tab,
   Divider
 } from '@nextui-org/react'
+
 import { Save, Mail, Bell, Shield, Globe, Palette } from 'lucide-react'
 
 export default function SettingsManager() {
@@ -72,7 +73,11 @@ export default function SettingsManager() {
 
   return (
     <div className="space-y-6 p-6">
-      <h1 className="text-2xl font-bold">Settings</h1>
+      <div className="flex flex-col space-y-4">
+        <h1 className="text-2xl font-bold">Settings</h1>
+
+       
+      </div>
 
       <Tabs aria-label="Settings options">
         <Tab key="general" title={

@@ -1,0 +1,60 @@
+/* src/styles/mobile.css */
+/* Mobile Sakura Styles - Only apply at 470px and below */
+@media (max-width: 470px) {
+  .mobile-sakura-layout {
+    display: block;
+  }
+  
+  /* Touch-friendly interactions */
+  .sakura-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Smooth transitions for mobile */
+  .sakura-transition {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Active states for touch */
+  .sakura-touch:active {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  
+  /* Custom scrollbar for mobile */
+  .sakura-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .sakura-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Prevent text selection on touch elements */
+  .sakura-no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Safe area padding for devices with notches */
+  .sakura-safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .sakura-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Hide mobile layout on screens larger than 470px */
+@media (min-width: 471px) {
+  .mobile-sakura-layout {
+    display: none !important;
+  }
+}

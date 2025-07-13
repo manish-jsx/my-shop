@@ -26,6 +26,7 @@ import {
   Select,
   SelectItem
 } from '@nextui-org/react'
+
 import {
   Search,
   MoreVertical,
@@ -150,27 +151,31 @@ export default function CustomersManager() {
   return (
     <div className="space-y-6 p-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Customers</h1>
-        <div className="flex gap-2">
-          <Button
-            color="primary"
-            variant="flat"
-            startContent={<Download className="w-4 h-4"/>}
-          >
-            Export
-          </Button>
-          <Button
-            color="primary"
-            startContent={<UserPlus className="w-4 h-4"/>}
-            onPress={() => {
-              resetForm()
-              onOpen()
-            }}
-          >
-            Add Customer
-          </Button>
+      <div className="flex flex-col space-y-4">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">Customers</h1>
+          <div className="flex gap-2">
+            <Button
+              color="primary"
+              variant="flat"
+              startContent={<Download className="w-4 h-4"/>}
+            >
+              Export
+            </Button>
+            <Button
+              color="primary"
+              startContent={<UserPlus className="w-4 h-4"/>}
+              onPress={() => {
+                resetForm()
+                onOpen()
+              }}
+            >
+              Add Customer
+            </Button>
+          </div>
         </div>
+
+       
       </div>
 
       {/* Filters */}

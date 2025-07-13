@@ -1,0 +1,226 @@
+/* src/styles/mobile-sakura.css */
+
+/* Mobile Sakura Gem Store Styles */
+.mobile-sakura-layout {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scrolling for mobile */
+.mobile-sakura-layout * {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Touch-friendly buttons */
+.mobile-sakura-layout button {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* Smooth button press animation */
+.mobile-sakura-layout button:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease-in-out;
+}
+
+/* Gradient animations */
+@keyframes gradient-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gradient-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: gradient-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Floating animation for special elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gem sparkle animation */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sparkle-animation {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Bounce animation for cart/wishlist badges */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bounce-in {
+  animation: bounce-in 0.3s ease-out;
+}
+
+/* Pulse animation for featured items */
+@keyframes pulse-purple {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
+  }
+}
+
+.pulse-purple {
+  animation: pulse-purple 2s infinite;
+}
+
+/* Custom card hover effects */
+.sakura-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sakura-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.sakura-card:active {
+  transform: translateY(-1px);
+}
+
+/* Gradient backgrounds for categories */
+.category-healing {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+
+.category-jewelry {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+}
+
+.category-raw {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.category-certified {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+}
+
+/* Loading skeleton animation */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+/* Safe area adjustments for iPhone notch */
+@supports (padding: max(0px)) {
+  .safe-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Custom focus styles for accessibility */
+.mobile-sakura-layout *:focus {
+  outline: 2px solid #a855f7;
+  outline-offset: 2px;
+}
+
+/* Haptic feedback simulation */
+@media (prefers-reduced-motion: no-preference) {
+  .haptic-light:active {
+    animation: haptic-light 0.1s ease-out;
+  }
+  
+  .haptic-medium:active {
+    animation: haptic-medium 0.15s ease-out;
+  }
+}
+
+@keyframes haptic-light {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+@keyframes haptic-medium {
+  0% { transform: scale(1); }
+  25% { transform: scale(0.95); }
+  75% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .mobile-sakura-layout {
+    background-color: #0f0f23;
+    color: #e5e7eb;
+  }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .mobile-sakura-layout {
+    --purple-600: #000000;
+    --pink-600: #000000;
+  }
+}

@@ -1,34 +1,41 @@
 // src/components/admin/QuickActions.jsx
 'use client'
 import { Button } from '@nextui-org/react'
+import { useRouter } from 'next/navigation'
 import { Plus, Package, Tags, FileText } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function QuickActions() {
+  const router = useRouter()
+
   const actions = [
     {
       label: 'Add Product',
       icon: Plus,
-      color: 'primary',
-      href: '/admin/products/new'
+      color: 'success',
+      href: '/admin/products?action=add',
+      onClick: () => router.push('/admin/products?action=add')
     },
     {
       label: 'Manage Inventory',
       icon: Package,
-      color: 'secondary',
-      href: '/admin/inventory'
+      color: 'primary',
+      href: '/admin/products/inventory',
+      onClick: () => router.push('/admin/products/inventory')
     },
     {
       label: 'Create Promotion',
       icon: Tags,
-      color: 'success',
-      href: '/admin/promotions/new'
+      color: 'warning',
+      href: '/admin/marketing/promotions?action=create',
+      onClick: () => router.push('/admin/marketing/promotions?action=create')
     },
     {
       label: 'View Reports',
       icon: FileText,
-      color: 'warning',
-      href: '/admin/reports'
+      color: 'danger',
+      href: '/admin/reports',
+      onClick: () => router.push('/admin/reports')
     }
   ]
 
@@ -45,6 +52,7 @@ export default function QuickActions() {
             color={action.color}
             startContent={<action.icon className="w-4 h-4" />}
             className="whitespace-nowrap"
+            onPress={action.onClick}
           >
             {action.label}
           </Button>

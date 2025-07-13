@@ -1,7 +1,7 @@
-
 // src/components/admin/marketing/PromotionManager.jsx
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import {
   Card,
   CardBody,
@@ -27,6 +27,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from '@nextui-org/react'
+
 import { 
   Plus, 
   Edit2, 
@@ -69,6 +70,50 @@ export default function PromotionManager() {
     conditions: '',
     status: 'active'
   })
+  const searchParams = useSearchParams()
+
+  // Handle URL action parameters
+  useEffect(() => {
+    const action = searchParams.get('action')
+    if (action === 'create') {
+      // Reset form and open modal for new promotion
+      setEditingPromotion(null)
+      setFormData({
+        name: '',
+        description: '',
+        type: 'discount',
+        value: '',
+        startDate: '',
+        endDate: '',
+        target: 'all_customers',
+        conditions: '',
+        status: 'active'
+      })
+      onOpen()
+    }
+  }, [searchParams, onOpen])
+
+  useEffect(() => {
+    const promoId = searchParams.get('id')
+    if (promoId) {
+      const promo = promotions.find(p => p.id === Number(promoId))
+      if (promo) {
+        setEditingPromotion(promo)
+        setFormData({
+          name: promo.name,
+          description: promo.description,
+          type: promo.type,
+          value: promo.value,
+          startDate: promo.startDate,
+          endDate: promo.endDate,
+          target: promo.target,
+          conditions: promo.conditions,
+          status: promo.status
+        })
+        onOpen()
+      }
+    }
+  }, [searchParams, promotions, onOpen])
 
   const handleEdit = (promotion) => {
     setEditingPromotion(promotion)
@@ -106,29 +151,33 @@ export default function PromotionManager() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Promotions</h1>
-        <Button
-          color="primary"
-          startContent={<Plus className="w-4 h-4" />}
-          onPress={() => {
-            setEditingPromotion(null)
-            setFormData({
-              name: '',
-              description: '',
-              type: 'discount',
-              value: '',
-              startDate: '',
-              endDate: '',
-              target: 'all_customers',
-              conditions: '',
-              status: 'active'
-            })
-            onOpen()
-          }}
-        >
-          Add Promotion
-        </Button>
+      <div className="flex flex-col space-y-4">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">Promotions</h1>
+          <Button
+            color="primary"
+            startContent={<Plus className="w-4 h-4" />}
+            onPress={() => {
+              setEditingPromotion(null)
+              setFormData({
+                name: '',
+                description: '',
+                type: 'discount',
+                value: '',
+                startDate: '',
+                endDate: '',
+                target: 'all_customers',
+                conditions: '',
+                status: 'active'
+              })
+              onOpen()
+            }}
+          >
+            Create Promotion
+          </Button>
+        </div>
+
+       
       </div>
 
       {/* Promotions Table */}

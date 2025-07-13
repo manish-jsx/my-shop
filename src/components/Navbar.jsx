@@ -128,22 +128,38 @@ import {
   Button,
   Badge 
 } from '@nextui-org/react'
-import { ShoppingCart } from 'lucide-react'
+import { ShoppingCart, Heart } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
+import { useWishlist } from '@/context/WishlistContext'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
+import { useMobile } from '@/hooks/useMobile'
 
 export default function Navbar() {
+  const isMobile = useMobile()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
   const { user, isLoaded } = useUser()
   const { cart } = useCart()
+  const { wishlist } = useWishlist()
+
+  // Don't render navbar on mobile (470px and below)
+  if (isMobile) {
+    return null
+  }
 
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0)
+  const wishlistItemCount = wishlist.length
 
   const menuItems = [
     { name: 'Home', href: '/' },
-    { name: 'Products', href: '/products' },
+    { name: 'Shop', href: '/products' },
+    { name: 'Collections', href: '/collections' },
+    { name: 'Education', href: '/education' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'News', href: '/news' },
+    { name: 'About', href: '/about' },
     { name: 'Cart', href: '/cart' },
+    { name: 'Wishlist', href: '/wishlist' },
     ...(user?.publicMetadata?.role === 'admin' ? [{ name: 'Admin', href: '/admin' }] : []),
   ]
 
@@ -161,7 +177,7 @@ export default function Navbar() {
       <NavbarContent justify="start">
         <NavbarBrand>
           <Link href="/" className="font-bold text-inherit">
-            Enchanted Collections
+            SHUKRA Gems
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -186,6 +202,25 @@ export default function Navbar() {
         {/* Theme Switcher */}
         <NavbarItem>
           <ThemeSwitcher />
+        </NavbarItem>
+        
+        {/* Wishlist */}
+        <NavbarItem>
+          <Link href="/wishlist">
+            <Badge
+              content={wishlistItemCount}
+              color="danger"
+              isInvisible={wishlistItemCount === 0}
+            >
+              <Button
+                variant="light"
+                isIconOnly
+                className="hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <Heart className="w-5 h-5" />
+              </Button>
+            </Badge>
+          </Link>
         </NavbarItem>
         
         {/* Cart */}

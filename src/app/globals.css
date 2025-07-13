@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import mobile-specific styles */
+@import '../styles/mobile.css';
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -52,5 +55,228 @@ html.changing-theme * {
 /* Selection Styles */
 ::selection {
   @apply bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-100;
+}
+
+/* TipTap Editor Styles */
+.ProseMirror {
+  outline: none;
+  border: none;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+.ProseMirror h1 {
+  @apply text-3xl font-bold mb-4 mt-6;
+}
+
+.ProseMirror h2 {
+  @apply text-2xl font-bold mb-3 mt-5;
+}
+
+.ProseMirror h3 {
+  @apply text-xl font-bold mb-2 mt-4;
+}
+
+.ProseMirror ul, .ProseMirror ol {
+  @apply pl-6 mb-4;
+}
+
+.ProseMirror ul {
+  @apply list-disc;
+}
+
+.ProseMirror ol {
+  @apply list-decimal;
+}
+
+.ProseMirror li {
+  @apply mb-1;
+}
+
+.ProseMirror blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic my-4 text-gray-600;
+}
+
+.ProseMirror code {
+  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+}
+
+.ProseMirror pre {
+  @apply bg-gray-100 p-4 rounded-lg overflow-x-auto my-4;
+}
+
+.ProseMirror pre code {
+  @apply bg-transparent p-0;
+}
+
+.ProseMirror table {
+  @apply border-collapse table-auto w-full my-4;
+}
+
+.ProseMirror th, .ProseMirror td {
+  @apply border border-gray-300 px-3 py-2 text-left;
+}
+
+.ProseMirror th {
+  @apply bg-gray-100 font-semibold;
+}
+
+.ProseMirror hr {
+  @apply border-gray-300 my-6;
+}
+
+.ProseMirror a {
+  @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+.ProseMirror img {
+  @apply max-w-full h-auto rounded-lg my-4;
+}
+
+.ProseMirror mark {
+  @apply bg-yellow-200 px-1 rounded;
+}
+
+/* Focus states for better accessibility */
+.ProseMirror:focus {
+  @apply outline-none;
+}
+
+/* Table selection styles */
+.ProseMirror .selectedCell:after {
+  z-index: 2;
+  position: absolute;
+  content: "";
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(200, 200, 255, 0.4);
+  pointer-events: none;
+}
+
+/* Code block syntax highlighting (if using lowlight) */
+.ProseMirror .hljs-comment,
+.ProseMirror .hljs-quote {
+  @apply text-gray-500;
+}
+
+.ProseMirror .hljs-keyword,
+.ProseMirror .hljs-selector-tag,
+.ProseMirror .hljs-literal {
+  @apply text-purple-600;
+}
+
+.ProseMirror .hljs-string,
+.ProseMirror .hljs-doctag {
+  @apply text-green-600;
+}
+
+.ProseMirror .hljs-number,
+.ProseMirror .hljs-regexp,
+.ProseMirror .hljs-variable {
+  @apply text-blue-600;
+}
+
+/* Mobile App Styles - Zero margins and padding for native app feel */
+@media (max-width: 470px) {
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100vw !important;
+  }
+  
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100vw !important;
+    position: relative !important;
+  }
+  
+  .mobile-sakura-layout {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    overflow-x: hidden !important;
+  }
+  
+  .mobile-sakura-layout * {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  
+  /* Lock bottom navigation completely */
+  .mobile-sakura-layout .fixed {
+    position: fixed !important;
+    transform: none !important;
+    will-change: auto !important;
+    backface-visibility: hidden !important;
+  }
+  
+  /* Remove any default margins from mobile components */
+  .mobile-sakura-layout main {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Ensure full width for mobile cards and components */
+  .mobile-sakura-layout .mobile-card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-radius: 0;
+    max-width: 100% !important;
+  }
+  
+  /* Native app-like transitions */
+  .mobile-sakura-layout .mobile-transition {
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  }
+  
+  /* Remove container padding on mobile */
+  .container, .max-w-7xl, .max-w-6xl, .max-w-5xl {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  /* Prevent horizontal scrolling */
+  * {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Specific fixes for inputs and buttons */
+  input, button, select, textarea {
+    max-width: 100% !important;
+  }
+  
+  /* Fix for any flex containers that might overflow */
+  .flex {
+    flex-wrap: wrap !important;
+    max-width: 100% !important;
+  }
+  
+  /* Ensure images don't overflow */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
 }
 
