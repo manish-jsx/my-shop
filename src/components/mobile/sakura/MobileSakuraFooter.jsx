@@ -176,8 +176,6 @@ export default function MobileSakuraFooter() {
         <div className="h-safe-area-inset-bottom bg-white"></div>
       </nav>
 
-      {/* Overlay for bottom padding to prevent content from being hidden */}
-      <div className="h-20 w-full"></div>
     </>
   )
 }
